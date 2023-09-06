@@ -1,5 +1,5 @@
 <template>
-    <footer class='footerContent'>
+    <div :class="{ showPc: showPcActive }" class='footerContent'>
         <ul class='footerContentElements'>
             <li v-for='footerItem in footerItems' :key='footerItem.name' :href='footerItem.url' class='footerContentElement'>
                 <router-link :to="'../' + footerItem.url">
@@ -8,7 +8,7 @@
                 </router-link>
             </li>
         </ul>
-    </footer>
+    </div>
 </template>
 <script setup lang="ts">
 import btmMenuIcon from '../assets/icons/btm_menu.svg'
@@ -22,6 +22,9 @@ const footerItems: ReadonlyArray<NavItems> = [
     { name: 'ふんいき', path: btmCategoryIcon, url: 'category' },
     { name: 'もくてき', path: btmPurposeIcon, url: 'purpose' }
 ]
+const { showPcActive } = defineProps<{
+    showPcActive: boolean
+}>()
 </script>
 <style scoped>
 .footerContent {

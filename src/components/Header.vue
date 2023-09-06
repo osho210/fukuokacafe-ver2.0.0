@@ -13,7 +13,7 @@
                     </li>
                 </ul>
             </div>
-            <Humbeger :class="{ showPc: showPcActive }"></Humbeger>
+            <Humbeger :class="{ showPc: showPcActive }" />
         </div>
     </header>
 </template>
@@ -28,26 +28,12 @@ const headerItems: ReadonlyArray<HeaderItems> = [
 ]
 
 const isActive = ref(true)
-const showMobileActive = ref(true)
-const showPcActive = ref(true)
+const { showMobileActive, showPcActive } = defineProps<{
+    showMobileActive: boolean
+    showPcActive: boolean
+}>()
 
-onMounted(() => {
-    const handleResize = () => {
-        if (window.innerWidth <= 550) {
-            showMobileActive.value = true
-            showPcActive.value = false
-        } else {
-            showMobileActive.value = false
-            showPcActive.value = true
-        }
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
 
-    onUnmounted(() => {
-        window.removeEventListener('resize', handleResize)
-    })
-})
 </script>
 
 <style scoped>

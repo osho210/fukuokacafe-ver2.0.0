@@ -1,24 +1,30 @@
 <template>
     <div>
-        <Header />
-        <FooterNavigation />
-        <slot />
+        <Header :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
+        <slot :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
         <Footer />
+        <FooterNavigation :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
     </div>
 </template>
 
 <script setup lang="ts">
-const { $handleResize } = useNuxtApp()
+let showMobileActive = ref(true)
+let showPcActive = ref(true)
 onMounted(() => {
-    if ($handleResize) {
-        console.log($handleResize)
-        $handleResize
+    const handleResize = () => {
+        if (window.innerWidth <= 550) {
+            showMobileActive.value = true
+            showPcActive.value = false
+        } else {
+            showMobileActive.value = false
+            showPcActive.value = true
+        }
     }
-    else {
-        console.log("none")
-    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    onUnmounted(() => {
+        window.removeEventListener('resize', handleResize)
+    })
 })
 </script>
-
-
-

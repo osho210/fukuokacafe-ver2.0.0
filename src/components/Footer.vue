@@ -5,4 +5,5 @@
             <p>プライバシーポリシーについて</p>
         </div>
     </footer>
+    <!-- <FooterNavigation :class="{ showPc: showPcActive }" /> -->
 </template>
