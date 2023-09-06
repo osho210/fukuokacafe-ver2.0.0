@@ -1,0 +1,266 @@
+article h2{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.articleTitle h1{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.articleTitle p{
+    margin: 2em 0;
+}
+.articleTitle img{
+    width: 100%;
+}
+.articleSubTitle{
+    border-bottom: 1px solid #cdbcac;
+}
+
+  /* 記事 */
+.shopTitle{
+    margin-bottom: 1em;
+    padding: 0.25em 0 0.25em 0.75em;
+    border-left: 6px solid #cdbcac;
+}
+
+.shopArticle img{
+    width: 100%;
+}
+
+.photgraferItem{
+    display: flex;
+    justify-content: right;
+    margin: 1em 0;
+}
+.photgraferItem img{
+    width: 50px;
+}
+.photgraferItem div{
+    font-size: 12px;
+    margin: auto 0;
+}
+.photgraferItem p{
+    font-size: 12px;
+}
+  /* recommend */
+.recommendPerson{
+    margin: 2em 0;
+}
+.storeInfo{
+    margin-bottom: 5em;
+}
+.recommendPerson p, .storeInfo p{
+    display: inline-block;
+    padding: 2px 4px;
+    background: #cdbcac;
+    color: #fff;
+}
+.recommendPersonContent , .storeInfoDetail{
+    border: solid 1px #ccc;
+}
+.recommendPersonContent li{
+    padding: 1em;
+}
+.storeInfoDetail ul{
+    padding: 1em;
+}
+.storeInfoDetail li{
+    display: flex;
+}
+.storeInfoDetail img{
+    width: 20px;
+    margin-right: 2em;
+}
+.storeInfoDetail p{
+    background: white;
+    color: black;
+    font-weight: 100;
+    font-size: 14px;
+}
+  /* 間のボーダー */
+.recommendPersonContent li:not(:last-child){
+    border: solid 1px #ccc;
+}
+
+  /* .photgraferItem  */
+  /* 目次 */
+.fa-check:before {
+    content: "\f00c";
+}
+.nomadList10 {
+    position: relative;
+    background: #FFF;
+    padding: 2.5em 2em 0;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 5vw;
+}
+.nomadList10 span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #cdbcac;
+    color: #FFF;
+    width: 100%;
+    text-align: left;
+    padding: 0.4em;
+    padding-left: 2rem;
+}
+.nomadList10 ul {
+    padding: 15px 0;
+}
+.fa-check__list {
+    counter-reset: number;
+    list-style-type: none!important;
+    padding: 0.5em;
+}
+.fa-check__list li {
+    position: relative;
+    padding: 0.5em 0.5em 0.5em 30px;
+    font-size: 20px;
+}
+.nomadList10 ul li {
+    margin-bottom: 5px;
+}
+.fa-check__list li:before {
+    position: absolute;
+    counter-increment: number;
+    content: counter(number);
+    display: inline-block;
+    background: #cdbcac;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 50%;
+    left: 0;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+/* enbed */
+.instagram-media {
+    background: #FFF;
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.5), 0 1px 10px 0 rgba(0, 0, 0, 0.15);
+    margin: 1px;
+    max-width: 540px;
+    min-width: 326px;
+    padding: 0;
+    width: 100%;
+    width: -webkit-calc(100% - 2px);
+    width: calc(100% - 2px);
+}
+.profile-image {
+    border-radius: 50%;
+    flex-grow: 0;
+    height: 40px;
+    margin-right: 14px;
+    width: 40px;
+}
+.caption {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+}
+.caption-line {
+    background-color: #F4F4F4;
+    border-radius: 4px;
+}
+
+/* blogCard */
+.blogCard{
+    padding: 6px 5% 3px 5%;
+    border: #6F1117 1px solid;
+    border-radius: 10px;
+    color: #6F1117;
+    margin: -20px 10% 40px;
+}
+.blogCard::before{
+    content: 'お店を雑誌風に紹介';
+    display: block;
+    background: #6F1117;
+    position: relative;
+    left: -7.5%;
+    top: -20px;
+    color: white;
+    width: 160px;
+    padding: 2px;
+    text-align: center;
+}
+.blogCard::after{
+    content: '続きを見る';
+    display: block;
+    background: #6F1117;
+    position: relative;
+    top: 6px;
+    left: -7.5%;
+    width: 115%;
+    height: 30px;
+    text-align: right;
+    color: white;
+    padding-right: 10px;
+    line-height: 30px;
+}
+.blogCardContent{
+    display: flex;
+    justify-content: space-around;
+}
+.blogCardText{
+    margin: auto 0;
+}
+.additionalPage{
+    font-size: 12px;
+    margin-bottom: 2%;
+}
+.blogCardPhoto{
+    width: 25% !important;
+}
+.cafeForBlogCard{
+    font-size: 20px;
+}
+.cafeForBlogCardDetails{
+    font-size: 14px;
+    font-weight: bold;
+}
+/* まとめ記事のmargin */
+.articleSummary{
+    margin-bottom: 80px;
+}
+
+@media screen and (max-width: 767px){
+.nomadList10 {
+    width: 100%;
+    padding-bottom: 1em;
+    }
+    .nomadList10 span {
+    padding-left: 1em;
+    }
+    .fa-check__list li {
+    position: relative;
+    line-height: 1.5em;
+    padding: 0.2em 0.5em 0.2em 3em;
+}
+.blogCard{
+    padding: 6px 5% 3px 5%;
+    margin:-20px 0 40px 0;
+}
+.blogCard::before{
+    left: -6%;
+}
+.blogCard::after{
+    left: -6%;
+    width: 112%;
+}
+.blogCardText{
+    margin-top: 2%;
+    margin-left: 5%;
+}
+}

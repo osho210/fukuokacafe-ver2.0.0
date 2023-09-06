@@ -1,0 +1,99 @@
+
+
+.wrapper{
+    padding: 0 3%;
+    margin-top: 80px;
+}
+.itemDistanceEvenly{
+    display: flex;
+    justify-content: space-between;
+}
+.showMobile{
+    display: none;
+}
+.showPc{
+    display: none;
+}
+
+/* Vuecarouserデフォルトのcss */
+.VueCarousel-pagination[data-v-438fd353] {
+    display: none;
+}
+.VueCarousel-wrapper{
+    padding-bottom: 30px;
+    border-bottom: 1px solid;
+}
+
+/* bottn */
+.button{
+    font-size: 80%;
+    background-color: #535252;
+    color: #fff;
+    border-radius: 15px;
+    width: 7rem;
+    height: 2rem;
+    display:inline-block;
+    border: none;
+}
+
+/* 画面共通レイアウト */
+.content{
+    display: flex;
+}
+.contentMain{
+    width: 80%;
+}
+.contentSide{
+    width: 20%;
+}
+
+/* chatbot */
+#chatbase-bubble-button{
+    bottom: 110px!important;
+    left: 5px !important;
+}
+#chatbase-bubble-window{
+    top: 20%!important;
+    left: 5%!important;
+    height: 600px!important;
+    width: 90% !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .content{
+        display: block;
+    }
+    .contentMain{
+        width: 100%;
+    }
+    .contentSide{
+        display: none;
+    }
+    h1 , h2 , h3{
+        font-weight: 500!important;
+    }
+}
+
+/* chatbot pc */
+@media screen and (max-width: 500px) {
+    #chatbase-bubble-window{
+        top: 20%!important;
+        left: 5%!important;
+        height: 400px!important;
+        width: 90% !important;
+    }
+}
+
+/* 内部スクロール */
+:target::before {
+    content: "";
+    display: block;
+    height: 80px; /* headerの高さ */
+    margin: -80px 0 0; /* headerの高さの分だけ上に移動する */
+}
+
+/* エラーメッセージ */
+.errorMessage{
+    color: red;
+    margin-bottom: 20px!important;
+}

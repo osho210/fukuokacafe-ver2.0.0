@@ -1,0 +1,134 @@
+/* keyvisual */
+.keyContent{
+    /* 画面幅を超えて合わせる */
+    margin: 0 calc(50% - 50vw) 60px;
+    width: 100vw;
+}
+.keyContent img{
+    width: 100%;
+}
+
+.selectorList{
+    width: 80%;
+    margin: 0 auto;
+    max-width: 400px;
+    text-align: center;
+}
+.selectorListSearch {
+    display: flex;
+    margin-top: 5%;
+}
+.selectorListSearch input{
+    width: 100%;
+    border-radius: 6px 0 0 6px;
+}
+.selectorListSearchButton{
+    width: 40px;
+    background: #978574;
+    padding: 2px;
+    border-radius: 0 6px 6px 0;
+}
+.contentTitle{
+    text-align: center;
+    margin: 10% 0;
+}
+.contentLists{
+    display: grid;
+    -ms-grid-columns: (minmax(150px,1fr))[auto-fit];
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 2%;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    text-align: center;
+    margin: 5% 0 10%;
+}
+.contentList img{
+    width: 100%;
+}
+.contentArticle{
+    border: 1px solid #000;
+    border-radius: 15px;
+    padding: 5%;
+    display: flex;
+}
+.contentArticle img{
+    margin: 0;
+    width: 40%;
+}
+.contentArticle div{
+    margin: auto 0;
+    text-align: left;
+}
+.contentArticle div p{
+    margin: 5% 0;
+}
+.contentArticle div button{
+    display: inline-block;
+}
+.contentArticle button{
+    display: none;
+}
+.contentArticle button a{
+    color: #fff;
+}
+/* footer style */
+footer{
+    background: #ebebeb;
+    padding: 4vw 0;
+    text-align: center;
+    display: block;
+    /* 画面幅を超えて合わせる */
+    margin: 0 calc(50% - 50vw);
+    width: 100vw;
+}
+footer p{
+    display: block;
+}
+#chatbase-bubble-window{
+    bottom: 200!important;
+}
+
+@media screen and (max-width: 1024px) {
+    .content{
+        display: block;
+    }
+    .contentMain{
+        width: 100%;
+    }
+    .contentSide{
+        display: none;
+    }
+}
+
+/* mby */
+@media screen and (max-width: 550px) {
+    .content{
+        display: block;
+    }
+    .contentMain{
+        width: 100%;
+    }
+    .contentSide{
+        display: none;
+    }
+    .contentArticle{
+        display: block;
+    }
+    .contentArticle div{
+        text-align: center;
+    }
+    .contentArticle div button{
+        display: none;
+    }
+    .contentArticle button{
+        display: inline-block;
+    }
+    .contentArticle img{
+        margin: 5% 0 10%;
+        width: 80%;
+    }
+    footer{
+        margin: 0 calc(50% - 50vw) 75px;
+    }
+}
