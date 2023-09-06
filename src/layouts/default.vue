@@ -1,6 +1,7 @@
 <template>
     <div>
         <Header :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
+        <SliderContent />
         <div>
             <slot :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
             <Sidebar />
