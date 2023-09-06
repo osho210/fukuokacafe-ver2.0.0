@@ -2,11 +2,11 @@
     <header>
         <div :class="{ itemDistanceEvenly: isActive, headerPosition: isActive }">
             <router-link to="/">
-                <img src="../assets/img/logo.png" alt="サイトロゴ" :class="{ logoImage: isActive }">
+                <img src="../assets/icons/logo.png" alt="サイトロゴ" :class="{ logoImage: isActive }">
             </router-link>
             <div :class="{ showMobile: showMobileActive, headerList: isActive, wrapper: isActive }">
                 <ul :class="{ itemDistanceEvenly: isActive }">
-                    <li v-for="(headerItem) in HeaderItems"  :href="headerItem.url" :class="{ headerItemPosition: isActive }">
+                    <li v-for="(headerItem) in headerItems" :key="headerItem.name" :href="headerItem.url" :class="{ headerItemPosition: isActive }">
                         <router-link :to="'../' + headerItem.url">
                             {{ headerItem.name }}
                         </router-link>
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-const HeaderItems: ReadonlyArray<HeaderItems> = [
+const headerItems: ReadonlyArray<HeaderItems> = [
     { name: '福岡カフェ日記とは', url: 'about' },
     { name: '目的', url: 'purpose' },
     { name: 'メニュー', url: 'menu' },
@@ -31,6 +31,23 @@ const isActive = ref(true)
 const showMobileActive = ref(true)
 const showPcActive = ref(true)
 
+onMounted(() => {
+    const handleResize = () => {
+        if (window.innerWidth <= 550) {
+            showMobileActive.value = true
+            showPcActive.value = false
+        } else {
+            showMobileActive.value = false
+            showPcActive.value = true
+        }
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
+    onUnmounted(() => {
+        window.removeEventListener('resize', handleResize)
+    })
+})
 </script>
 
 <style scoped>
