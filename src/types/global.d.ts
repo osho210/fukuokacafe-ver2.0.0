@@ -8,3 +8,8 @@ interface HeaderItems {
     name: string
     url: string
 }
+
+interface articleDetail {
+    id: number
+    title: string
+}
