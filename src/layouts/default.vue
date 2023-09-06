@@ -1,7 +1,10 @@
 <template>
     <div>
         <Header :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
-        <slot :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
+        <div>
+            <slot :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
+            <Sidebar />
+        </div>
         <Footer />
         <FooterNavigation :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
     </div>
