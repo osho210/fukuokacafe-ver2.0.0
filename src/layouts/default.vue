@@ -2,8 +2,10 @@
     <div>
         <Header :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
         <SliderContent />
-        <div>
-            <slot :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
+        <div class="content">
+            <div class="contentMain">
+                <slot :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
+            </div>
             <Sidebar />
         </div>
         <Footer />

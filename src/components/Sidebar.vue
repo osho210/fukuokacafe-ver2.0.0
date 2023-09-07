@@ -5,7 +5,7 @@
                 <router-link :to="'../' + listItem.url" class="sideItem">
                     <p>{{ listItem.name }}</p>
                     <div>
-                        <img src="../assets/img/icons/side-border.svg">
+                        <img src="../assets/icons/side-border.svg">
                         <img :src="listItem.path" alt="">
                     </div>
                 </router-link>

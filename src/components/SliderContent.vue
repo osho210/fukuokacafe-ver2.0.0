@@ -1,14 +1,14 @@
 <template>
     <div>
-        <carousel :per-page='3' class='sliderItems'>
-            <slide v-for='sliderItemImage in sliderItemImages' :key='sliderItemImage.name'>
+        <Swiper :modules="[SwiperAutoplay, SwiperEffectCreative]" :slides-per-view="3" :loop="true"  :autoplay="{ delay: 8000, disableOnInteraction: true, }" class='sliderItems'>
+            <SwiperSlide v-for='sliderItemImage in sliderItemImages' :key='sliderItemImage.name'>
                 <div class='sliderItemImage'>
                     <router-link :to="'../' + sliderItemImage.url">
                         <img :src='sliderItemImage.path' alt='スライド画像'>
                     </router-link>
                 </div>
-            </slide>
-        </carousel>
+            </SwiperSlide>
+        </Swiper>
         <div class="headerItemButtunArea">
             <ul class='headerItemButtuns'>
                 <router-link :to="'../' + headerItemButtun.url" v-for='headerItemButtun in headerItemButtuns' :key='headerItemButtun.name' :href='headerItemButtun.url' class="headerItemButtun">
@@ -25,16 +25,25 @@ import about from '../assets/image/shared/about.png'
 import area from '../assets/image/shared/area.png'
 import contact from '../assets/image/shared/contact.png'
 
+const swiperOptions = ref({
+    loop: true,
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+    }
+})
+
 const sliderItemImages: ReadonlyArray<NavItems> = [
     { name: 'about', path: about, url: 'about' },
     { name: 'area', path: contact, url: 'area' },
     { name: 'contact', path: area, url: 'contact' },
+    { name: 'about', path: about, url: 'about' },
     { name: 'area', path: contact, url: 'area' },
-    { name: 'contact', path: area, url: 'contact' },
-    { name: 'about', path: about, url: 'about' },
-    { name: 'contact', path: area, url: 'contact' },
-    { name: 'about', path: about, url: 'about' },
-    { name: 'area', path: contact, url: 'area' }
+    { name: 'contact', path: area, url: 'contact' }
 ]
 
 const headerItemButtuns: ReadonlyArray<HeaderItems> = [
@@ -72,6 +81,7 @@ a {
     display: flex;
     justify-content: center;
     text-align: center;
+    margin-top: 50px;
 }
 
 .headerItemButtun {
