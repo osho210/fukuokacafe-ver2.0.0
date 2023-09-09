@@ -4,5 +4,5 @@ export default defineNuxtConfig({
   css: ['~/assets/css/reset.css', '~/assets/css/common.css'],
   plugins: ['~/plugins/globalVariables.ts'],
   modules: ['nuxt-swiper'],
-  ssr:false
+  ssr:false,
 })
