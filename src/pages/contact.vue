@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <form class="contact_form" name="contact" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact" />
+        <form class="contact_form" name="contact" method="POST" data-netlify="true" netlify>
+            <input type="hidden" name="form-name" :value="contact" />
             <div class="contact_item">
                 <label for="name">お名前</label>
                 <input type="text" id="name" name="name" autocomplete="name" />
@@ -15,7 +15,7 @@
                 <textarea id="message" rows="12" name="message"></textarea>
             </div>
             <div class="contact_submit">
-                <button type="submit">送信しろ</button>
+                <button type="submit">送信</button>
             </div>
         </form>
     </div>
