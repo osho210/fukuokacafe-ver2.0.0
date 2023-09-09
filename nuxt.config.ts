@@ -3,5 +3,6 @@ export default defineNuxtConfig({
   srcDir: 'src/',
   css: ['~/assets/css/reset.css', '~/assets/css/common.css'],
   plugins: ['~/plugins/globalVariables.ts'],
-  modules: ['nuxt-swiper']
+  modules: ['nuxt-swiper'],
+  ssr:false,
 })
