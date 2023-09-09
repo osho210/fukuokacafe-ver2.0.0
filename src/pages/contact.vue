@@ -1,5 +1,5 @@
 <template>
-    <form name="contact" method="POST" data-netlify="true">
+    <form name="contact" method="POST" data-netlify="true" @submit.prevent="handleSubmit">
         <input type="hidden" name="form-name" value="contact">
         <p>
             <label>Name: <input type="text" name="name" /></label>
@@ -23,11 +23,9 @@
 </template>
 
 <script setup>
-const handleSubmit = (event) => {
-    event.preventDefault();
 
-    const myForm = event.target;
-    const formData = new FormData(myForm);
+const handleSubmit = (event) => {
+    const formData = new FormData(event.target);
 
     fetch("/", {
         method: "POST",
@@ -37,8 +35,4 @@ const handleSubmit = (event) => {
         .then(() => console.log("Form successfully submitted"))
         .catch((error) => alert(error));
 };
-
-document
-    .querySelector("form")
-    .addEventListener("submit", handleSubmit);
 </script>
