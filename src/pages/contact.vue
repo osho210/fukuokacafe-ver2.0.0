@@ -2,6 +2,7 @@
     <div class="container">
         <h1>お問い合わせ</h1>
         <form name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact" />
             <div>
                 <label for="name">お名前（必須）</label>
                 <input name="name" type="text" required />
