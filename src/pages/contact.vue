@@ -15,7 +15,7 @@
                 <textarea id="message" rows="12" name="message"></textarea>
             </div>
             <div class="contact_submit">
-                <button type="submit">送信</button>
+                <button type="submit">送信しろ</button>
             </div>
         </form>
     </div>
