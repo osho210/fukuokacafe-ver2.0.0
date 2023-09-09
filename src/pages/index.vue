@@ -1,5 +1,8 @@
 <template>
     <!-- 行く相手 -->
+    <div class="keyContent">
+        <img src="../assets/image/article/top/keyVisual.png" alt="">
+    </div>
     <section class="contentTitle">
         <h2>行く相手から選択</h2>
         <ul class="contentLists">
@@ -126,6 +129,9 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+    layout: "home"
+});
 // 目的
 import date from '../assets/image/article/top/purpose_date.svg'
 import friend from '../assets/image/article/top/purpose_friend.svg'
@@ -183,13 +189,12 @@ const categoryItems: ReadonlyArray<NavItems> = [
 <style>
 /* keyvisual */
 .keyContent {
-    /* 画面幅を超えて合わせる */
-    margin: 0 calc(50% - 50vw) 60px;
-    width: 100vw;
+    margin-bottom: 40px;
 }
 
 .keyContent img {
     width: 100%;
+    margin-top: 80px;
 }
 
 .selectorList {
@@ -234,7 +239,7 @@ const categoryItems: ReadonlyArray<NavItems> = [
     margin: 5% 0 10%;
 }
 
-.purposeItem{
+.purposeItem {
     padding: 30px;
 }
 
