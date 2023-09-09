@@ -42,8 +42,9 @@ const sideItemd: ReadonlyArray<NavItems> = [
 
 <style scoped>
 .sideItems {
-    margin-left: 3em;
+    margin-left: 1vw;
     font-size: 1rem;
+    padding: 0 2vw;
 }
 
 .sideItem {

@@ -43,7 +43,8 @@
     width: 80%;
 }
 .contentSide{
-    width: 20%;
+    margin-top: 80px;
+    width: 25%;
 }
 
 /* chatbot */
@@ -69,7 +70,7 @@
         display: none;
     }
     h1 , h2 , h3{
-        font-weight: 500!important;
+        font-weight: bold;
     }
 }
 
