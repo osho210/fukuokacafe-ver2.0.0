@@ -27,16 +27,14 @@ import sidePurposeIcon from '../assets/icons/side_purpose.svg'
 import sideMenuIcon from '../assets/icons/side_menu.svg'
 import sideAreaIcon from '../assets/icons/side_area.svg'
 import sideCategoryIcon from '../assets/icons/side_category.svg'
-import sideContactIcon from '../assets/img/icon/side_contact.svg'
+import sideContactIcon from '../assets/icons/side_contact.svg'
 
 const sideItemd: ReadonlyArray<NavItems> = [
     { name: '目的', url: 'purpose', path: sidePurposeIcon },
     { name: 'メニュー', url: 'menu', path: sideMenuIcon },
     { name: 'エリア', url: 'area', path: sideAreaIcon },
-    {
-        name: 'カテゴリー', url: 'category', path: sideCategoryIcon
-    }
-    // {name: '連絡先', url: 'contact', path: sideContactIcon}
+    { name: 'カテゴリー', url: 'category', path: sideCategoryIcon },
+    { name: 'お問い合わせ', url: 'contact', path: sideContactIcon }
 ]
 </script>
 

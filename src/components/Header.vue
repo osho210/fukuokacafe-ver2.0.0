@@ -24,7 +24,8 @@ const headerItems: ReadonlyArray<HeaderItems> = [
     { name: '目的', url: 'purpose' },
     { name: 'メニュー', url: 'menu' },
     { name: 'エリア', url: 'area' },
-    { name: 'カテゴリー', url: 'category' }
+    { name: 'カテゴリー', url: 'category' },
+    { name: 'お問い合わせ', url: 'contact' }
 ]
 
 const isActive = ref(true)

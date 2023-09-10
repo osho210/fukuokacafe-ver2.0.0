@@ -39,11 +39,11 @@ const swiperOptions = ref({
 
 const sliderItemImages: ReadonlyArray<NavItems> = [
     { name: 'about', path: about, url: 'about' },
-    { name: 'area', path: contact, url: 'area' },
-    { name: 'contact', path: area, url: 'contact' },
+    { name: 'area', path: area, url: 'area' },
+    { name: 'contact', path: contact, url: 'contact' },
     { name: 'about', path: about, url: 'about' },
-    { name: 'area', path: contact, url: 'area' },
-    { name: 'contact', path: area, url: 'contact' }
+    { name: 'area', path: area, url: 'area' },
+    { name: 'contact', path: contact, url: 'contact' }
 ]
 
 const headerItemButtuns: ReadonlyArray<HeaderItems> = [
