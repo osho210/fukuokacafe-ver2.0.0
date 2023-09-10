@@ -10,7 +10,7 @@
         <p>
             <label>Your Role: <select name="role[]" multiple>
                     <option value="leader">Leaderf</option>
-                    <option value="follower">Follower</option>
+                    <option value="follower">Followere</option>
                 </select></label>
         </p>
         <p>
