@@ -2,7 +2,7 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
-    "build": "nuxt build && cp _redirects .nuxt/dist/ && cp index.html .nuxt/dist/",
+    "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -14,6 +14,8 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "nuxt-swiper": "^1.2.2"
+    "nuxt-swiper": "^1.2.2",
+    "vee-validate": "^4.11.6",
+    "yup": "^1.2.0"
   }
 }
