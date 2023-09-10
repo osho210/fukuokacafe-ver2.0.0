@@ -52,31 +52,31 @@
                         <div class="storeInfoDetail">
                             <ul>
                                 <li>
-                                    <img src="../assets/img/icon/sum_address.svg" alt="">
+                                    <img src="../assets/icons/sum_address.svg" alt="">
                                     <p>住所 : {{ shopElement.address }}</p>
                                 </li>
                                 <li>
-                                    <img src="../assets/img/icon/sum_hour.svg" alt="">
+                                    <img src="../assets/icons/sum_hour.svg" alt="">
                                     <p>営業時間 : {{ shopElement.businessHoursStart + '' }}</p>
                                 </li>
                                 <li>
-                                    <img src="../assets/img/icon/sum_dayoff.svg" alt="">
+                                    <img src="../assets/icons/sum_dayoff.svg" alt="">
                                     <p>店休日 : {{ shopElement.regularHoliday }}</p>
                                 </li>
                                 <li>
-                                    <img src="../assets/img/icon/sum_phone.svg" alt="">
+                                    <img src="../assets/icons/sum_phone.svg" alt="">
                                     <p>電話 : {{ shopElement.phoneNumber }}</p>
                                 </li>
                                 <li>
-                                    <img src="../assets/img/icon/sum_parking.svg" alt="">
+                                    <img src="../assets/icons/sum_parking.svg" alt="">
                                     <p>駐車用 : {{ shopElement.parkingAvailability }}</p>
                                 </li>
                                 <li>
-                                    <img src="../assets/img/icon/sum_access.svg" alt="">
+                                    <img src="../assets/icons/sum_access.svg" alt="">
                                     <p>アクセス : {{ shopElement.nearestStation }}</p>
                                 </li>
                                 <li>
-                                    <img src="../assets/img/icon/sum_hp.svg" alt="">
+                                    <img src="../assets/icons/sum_hp.svg" alt="">
                                     <a :href="shopElement.hp" target="_blank">ホームページはこちら</a>
                                 </li>
                             </ul>
