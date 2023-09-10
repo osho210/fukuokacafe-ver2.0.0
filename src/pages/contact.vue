@@ -1,20 +1,19 @@
 <template>
-  <Form @submit="onSubmit" :validation-schema="schema" action="https://formsubmit.co/your-random-string/yamatsu.fukuoka@gmail.com" method="POST">
+  <Form :validation-schema="schema" action="https://formsubmit.co/737e3bbe2e9b7ac2017a17a2b6ad1b0b" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_blacklist" value="spammy pattern, banned term, phrase">
     <input type="text" name="_honey" style="display:none">
     <input type="hidden" name="_autoresponse" value="フォーム入力ありがとうございました。2~3日以内に返信いたします。">
-
-
+    <input type="hidden" name="_next" value="http://localhost:3000/contact">
     <div class="block">
       <span class='inputRequiredLabel'>必須</span>
       企業・会社名<br />
-      <Field name="company" type="company" />
+      <Field name="company" type="company" placeholder="企業・会社名" />
       <ErrorMessage class='errorMessage' name="company" />
     </div>
     <div class="block">
       <span class='inputRequiredLabel'>必須</span>
       代表者名<br />
-      <Field name="name" type="name" />
+      <Field name="name" type="name" placeholder="代表者名" />
       <ErrorMessage class='errorMessage' name="name" />
     </div>
     <div class="block">
@@ -26,7 +25,7 @@
     <div>
       <span class='inputRequiredLabel'>必須</span>
       メッセージ内容<br />
-      <Field as="textarea" name="content" type="content" cols="50" rows="10" />
+      <Field as="textarea" name="content" type="content" cols="50" rows="10" placeholder="メッセージ内容" />
       <ErrorMessage class='errorMessage' name="content" />
     </div>
     <input type="submit" class='formSubmitButton' value="送信">
@@ -42,16 +41,12 @@ const schema = yup.object({
   content: yup.string().required("メッセージ内容を入力してください"),
   // email: yup.string().eemail("正しい形式のメールアドレスを指定してください"),
 });
-function onSubmit(values) {
-  // Submit values to API...
-  alert(JSON.stringify(values, null, 2));
-}
 </script>
 <style>
 input {
   width: 100%;
-  padding: 8px 0;
-  margin-top: 3vw;
+  padding: 10px;
+  margin-top: 15px;
   border: 1px solid #d0d5d8;
   border-radius: 3px;
   height: 40px;
@@ -68,12 +63,11 @@ input[type='checkbox'] {
 
 textarea {
   width: 100%;
-  padding: 8px 0;
+  padding: 10px;
   margin-top: 3vw;
   border: 1px solid #d0d5d8;
   border-radius: 3px;
   height: 80px;
-  padding: 2%;
 }
 
 .contactItems {
