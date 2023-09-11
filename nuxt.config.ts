@@ -5,4 +5,10 @@ export default defineNuxtConfig({
   plugins: ['~/plugins/globalVariables.ts'],
   modules: ['nuxt-swiper'],
   ssr:false,
+  runtimeConfig: {
+    public: {
+      VITE_SUPABASE_URL: process.env.VITE_SUPABASE_URL,
+      VITE_SUPABASE_API_KEY: process.env.VITE_SUPABASE_API_KEY
+    },
+  }
 })
