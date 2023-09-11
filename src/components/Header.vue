@@ -34,7 +34,6 @@ const { showMobileActive, showPcActive } = defineProps<{
     showPcActive: boolean
 }>()
 
-
 </script>
 
 <style scoped>
