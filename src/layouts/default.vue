@@ -20,7 +20,7 @@
 import { createClient } from '@supabase/supabase-js'
 const $config = useRuntimeConfig()
 const supabaseUrl = $config.public.VITE_SUPABASE_URL
-console.log(supabaseUrl+"supabaseUrl")
+console.log(supabaseUrl+"supabaseUrlx")
 const supabaseApiKey = $config.public.VITE_SUPABASE_API_KEY
 const supabase = createClient(supabaseUrl, supabaseApiKey)
 const countries = ref<any[]>([]);
