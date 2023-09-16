@@ -14,10 +14,6 @@ type BusinessDay = {
     };
 };
 
-type Shop = {
-
-};
-
 type sliderItemImages = {
     images: {
         image_url: string;
@@ -27,4 +23,9 @@ type sliderItemImages = {
     shops: {
         shop_name: string;
     };
+}[];
+
+type instgramEmbed = {
+    embed_id: number
+    embed_name: string
 }[];

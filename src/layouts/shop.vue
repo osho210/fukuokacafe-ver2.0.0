@@ -87,7 +87,8 @@
                                         </li>
                                         <li>
                                             <img src="../assets/icons/sum_hp.svg" alt="">
-                                            <a :href="shops.instagram_name" target="_blank">インスタグラムはこちら</a>
+                                            <a v-if="shops.instagram_name" :href="'https://www.instagram.com/' + shops.instagram_name" target="_blank">インスタグラムはこちら</a>
+                                            <p v-else>インスタグラムはありません</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -96,12 +97,11 @@
                     </div>
                     <!--hashtag  @click="scrollToTarget"を未定義-->
                     <div v-if='localSelectedItemId === 4' class='hashtag shopDetailText'>
-                        <!-- <ul ref="instagramEmbed">
-                        <li v-for='insta in instagramUrl' :key='insta.name'>
-                            <InstagramIframe :src='insta.src' :dataInstgrmPayloadId="'dataInstgrmPayloadId' + insta.name">
-                            </InstagramIframe>
-                        </li>
-                    </ul> -->
+                        <ul ref="instagramEmbed">
+                            <li v-for='insta in instagramUrl' :key='insta.embed_name'>
+                                <InstagramIframe :src='insta.embed_name' :dataInstgrmPayloadId="'dataInstgrmPayloadId' + insta.embed_id" />
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -128,7 +128,8 @@ const images = ref<images>(inject('images', {} as images))
 const dayNames = ref<business_days>(inject('business_days', {} as business_days))
 const shop_business_days = ref<shop_business_days>(inject('shop_business_days', {} as shop_business_days))
 const sliderItemImages = ref<sliderItemImages>(inject('sliderItemImages', {} as sliderItemImages))
-// const instagramUrl = ref<instagramUrl>(inject('instagramUrl', {} as instagramUrl))
+const instagramUrl = ref<instgramEmbed>(inject('instgramEmbed', {} as instgramEmbed))
+
 const shopDetailLists: ReadonlyArray<articleDetail> = [
     { id: 1, title: '店舗詳細' },
     { id: 2, title: 'おすすめな人' },
@@ -136,9 +137,16 @@ const shopDetailLists: ReadonlyArray<articleDetail> = [
     { id: 4, title: 'インスタ' }
 ]
 let localSelectedItemId = ref(1)
+
 const selectItem = (selectVal: number) => {
     localSelectedItemId.value = selectVal
 }
+
+// const instagramUrl: ReadonlyArray<instgramEmbed> = [
+//     { id: 1, src: 'https://www.instagram.com/p/Cpb4uS1v6GD/embed' },
+//     { id: 2, src: 'https://www.instagram.com/p/CpXM1w4v0xZ/embed' },
+//     { id: 3, src: 'https://www.instagram.com/p/CogAeaZvAE0/embed' }
+// ]
 
 const swiperOptions = ref({
     loop: true,
@@ -189,9 +197,6 @@ async function businessTime(): Promise<void> {
 
 // 店舗写真の取得
 async function getShopImages(): Promise<void> {
-    const images: string[] = []
-    const users: string[] = []
-    let name: string = ''
     const response = await supabase
         .from('shop_images')
         .select(`images!inner(image_url,photographer_icon,photographer_name),shops!inner(shop_name)`)
@@ -201,11 +206,23 @@ async function getShopImages(): Promise<void> {
     sliderItemImages.value = data
 }
 
+// 埋め込みembedを取得
+async function getInstagramEmbeds(): Promise<void> {
+    const response = await supabase
+        .from('embeds')
+        .select("embed_name,embed_id")
+        .eq('shop_id', 1)
+    const data: instgramEmbed[] | any = response.data;
+    instagramUrl.value = data
+    console.log(instagramUrl.value)
+}
+
 onMounted(() => {
     getShop()
     getCLosed()
     businessTime()
     getShopImages()
+    getInstagramEmbeds()
 })
 </script>
 

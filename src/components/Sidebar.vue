@@ -47,7 +47,6 @@ const sideItemd: ReadonlyArray<NavItems> = [
 async function getHashtag() {
     const { data } = await supabase.from('hashtags').select()
     hashtags.value = data as any[]
-    console.log(hashtags.value)
 }
 
 onMounted(() => {
