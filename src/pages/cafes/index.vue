@@ -1,2 +1,8 @@
-<template></template>
-<script lang="ts" setup></script>
+<template>
+    <p>text</p>
+</template>
+<script lang="ts" setup>
+definePageMeta({
+    layout: "cafe"
+});
+</script>

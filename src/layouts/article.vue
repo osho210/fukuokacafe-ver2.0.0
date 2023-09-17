@@ -10,29 +10,30 @@
                 <i class="fas fa-check"></i> 目次
             </span>
             <ul class="fa-check__list">
-                <li v-for="shopElement in shopElements" :key="shopElement.shopName" class="fa-check__box">
-                    <a :href="'#' + shopElement.id">{{ shopElement.shopName }}</a>
+                <li v-for="shopElement in shops" :key="shopElement.shop_name" class="fa-check__box">
+                    <a :href="'#' + shopElement.shop_id">{{ shopElement.shop_name }}</a>
                 </li>
             </ul>
         </div>
         <article>
             <h2 class="articleSubTitle">{{ articleSubTitle }}</h2>
             <ul>
-                <li v-for="shopElement in shopElements" :key="shopElement.shopName" class="shopArticle" :id="shopElement.shopName">
-                    <h2 class="shopTitle"> <b>{{ shopElement.shopName }}</b></h2>
-                    <h3 class="shopDescription">{{ shopElement.shopSlogan }}</h3>
-                    <img :src="shopElement.shopImage" alt="カフェ画像">
+                <li v-for="shopElement in shops" :key="shopElement.shop_name" class="shopArticle" :id="shopElement.shop_name">
+                    <h2 class="shopTitle"> <b>{{ shopElement.shop_name }}</b></h2>
+                    <h3 class="shopDescription">{{ shopElement.shop_slogan }}</h3>
+                    <!-- もし複数画像を利用する場合はv-forを利用 -->
+                    <img :src="images[0].image_url" alt="カフェ画像">
 
                     <!-- instagramImage -->
                     <div class="photgraferItem">
-                        <img :src="shopElement.photographer" alt="撮影者">
+                        <img :src="images[0].image_url" alt="撮影者">
                         <div>
                             <p>Instgram<br>
-                                {{ shopElement.photographerId }}</p>
+                                {{ images[0].photographer_name }}</p>
                         </div>
                     </div>
                     <h4>
-                        {{ shopElement.shopDescription }}
+                        {{ shopElement.shop_description }}
                     </h4>
 
                     <!-- recommend -->
@@ -57,40 +58,46 @@
                                 </li>
                                 <li>
                                     <img src="../assets/icons/sum_hour.svg" alt="">
-                                    <p>営業時間 : {{ shopElement.businessHoursStart + '' }}</p>
+                                    <!-- day_idで曜日を出して -->
+                                    <p>営業時間 :
+                                        <span v-for="day in shop_business_days" :key="day.shop_id">
+                                            {{ day.business_hours_start }} +"~"+ {{ day.business_hours_end }}
+                                        </span>
+                                    </p>
                                 </li>
                                 <li>
                                     <img src="../assets/icons/sum_dayoff.svg" alt="">
-                                    <p>店休日 : {{ shopElement.regularHoliday }}</p>
+                                    <!-- 曜日を結合 -->
+                                    <p>店休日 : {{ business_days[0].day_name }}</p>
                                 </li>
                                 <li>
                                     <img src="../assets/icons/sum_phone.svg" alt="">
-                                    <p>電話 : {{ shopElement.phoneNumber }}</p>
+                                    <p>電話 : {{ shopElement.phone_number }}</p>
                                 </li>
                                 <li>
                                     <img src="../assets/icons/sum_parking.svg" alt="">
-                                    <p>駐車用 : {{ shopElement.parkingAvailability }}</p>
+                                    <p>駐車用 : {{ shopElement.parking_availability == true ? "あり" : "なし" }}</p>
                                 </li>
                                 <li>
                                     <img src="../assets/icons/sum_access.svg" alt="">
-                                    <p>アクセス : {{ shopElement.nearestStation }}</p>
+                                    <p>アクセス : {{ shopElement.nearest_station }}</p>
                                 </li>
                                 <li>
                                     <img src="../assets/icons/sum_hp.svg" alt="">
-                                    <a :href="shopElement.hp" target="_blank">ホームページはこちら</a>
+                                    <a :href="shopElement.instagram_name" target="_blank">インスタグラムはこちら</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <!-- 店舗カード1 -->
-                    <div v-if="shopElement.blogCardStatusAndType == 2">
-                        <router-link :to="'../cafe/' + shopElement.blogDetailPath">
+                    <div v-if="shopElement.blog_card_status_and_type == 2">
+                        <router-link :to="'../cafe/' + shopElement.blog_detail_path">
                             <div class="blogCard">
                                 <div class="blogCardContent">
-                                    <img class="blogCardPhoto" :src="shopElement.blogCardImage" alt="カフェ記事写真">
+                                    <img class="blogCardPhoto" :src="shopElement.blog_card_image" alt="カフェ記事写真">
                                     <div class="blogCardText">
-                                        <p class="cafeForBlogCard">{{ shopElement.shopName }}</p>
-                                        <p class="cafeForBlogCardDetails">{{ shopElement.shopSlogan }}</p>
+                                        <p class="cafeForBlogCard">{{ shopElement.shop_name }}</p>
+                                        <p class="cafeForBlogCardDetails">{{ shopElement.shop_slogan }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +121,10 @@ const articleSubTitle = ref<string>(inject('articleSubTitle', ''))
 const articleImage = ref<string>(inject('articleImage', ''))
 const articleTitleDescription = ref<string>(inject('articleTitleDescription', ''))
 const articleSummary = ref<string>(inject('articleSummary', ''))
-const shopElements = ref<article[]>(inject('shopElements', []))
+const shops = ref<shops[]>(inject('shops', []))
+const images = ref<images[]>(inject('images', []))
+const business_days = ref<business_days[]>(inject('business_days', []))
+const shop_business_days = ref<shop_business_days[]>(inject('shop_business_days', []))
 
 </script>
 <style scoped></style>

@@ -14,11 +14,11 @@
         <div class="hashTag">
             <h2>-#ハッシュタグ</h2>
             <!-- ここはdbから値を取得する -->
-            <!-- <ul>
-                <li v-for="tag in hashTag" :key="tag.id">
-                    <p>#{{ tag.name }}</p>
+            <ul>
+                <li v-for="hashtag_name in hashtags" :key="hashtag_name.id">
+                    <p>#{{ hashtag_name.hashtag_name }}</p>
                 </li>
-            </ul> -->
+            </ul>
         </div>
     </div>
 </template>
@@ -29,6 +29,13 @@ import sideAreaIcon from '../assets/icons/side_area.svg'
 import sideCategoryIcon from '../assets/icons/side_category.svg'
 import sideContactIcon from '../assets/icons/side_contact.svg'
 
+import { createClient } from '@supabase/supabase-js'
+const $config = useRuntimeConfig()
+const supabaseUrl = $config.public.VITE_SUPABASE_URL
+const supabaseApiKey = $config.public.VITE_SUPABASE_API_KEY
+const supabase = createClient(supabaseUrl, supabaseApiKey)
+const hashtags = ref<any[]>([]);
+
 const sideItemd: ReadonlyArray<NavItems> = [
     { name: '目的', url: 'purpose', path: sidePurposeIcon },
     { name: 'メニュー', url: 'menu', path: sideMenuIcon },
@@ -36,6 +43,15 @@ const sideItemd: ReadonlyArray<NavItems> = [
     { name: 'カテゴリー', url: 'category', path: sideCategoryIcon },
     { name: 'お問い合わせ', url: 'contact', path: sideContactIcon }
 ]
+
+async function getHashtag() {
+    const { data } = await supabase.from('hashtags').select()
+    hashtags.value = data as any[]
+}
+
+onMounted(() => {
+    getHashtag()
+})
 </script>
 
 <style scoped>
