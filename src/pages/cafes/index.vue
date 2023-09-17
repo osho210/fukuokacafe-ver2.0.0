@@ -1,10 +1,10 @@
 <template>
     <div class="select-wrapper">
         <label class="selectbox-005">
-            <select>
-                <option>一覧を表示</option>
-                <option>現在営業しているお店を表示</option>
-                <option>口コミの高い順に表示</option>
+            <select v-model="selectedOption" @change="handleSelectChange">
+                <option value="displayAll">一覧を表示</option>
+                <option value="displayOpenShops">現在営業しているお店を表示</option>
+                <option value="displayTopReviews">口コミの高い順に表示</option>
                 <!-- <option>現在地に近い順に探す</option> -->
             </select>
         </label>
@@ -23,6 +23,8 @@ definePageMeta({
     layout: "default"
 });
 
+const selectedOption = ref('displayAll')
+
 import { createClient } from '@supabase/supabase-js'
 const $config = useRuntimeConfig()
 const supabaseUrl = $config.public.VITE_SUPABASE_URL
@@ -32,26 +34,26 @@ const shopList = ref<shopLists>(inject('shopList', {} as shopLists))
 const route = useRoute()
 let currentRoute = ref(route.path)
 
+
 // 現在営業している店舗を表示
 async function displayCurrentlyOpenShops(): Promise<void> {
     const day = new Date().getDay()
     const hour = new Date().getHours();
     const minutes = new Date().getMinutes();
     let nowTime = hour + ":" + minutes + ":00"
-    console.log(nowTime)
     const response = await supabase.from('shops')
         // 内部結合で画像を取得
         .select(`shop_id,shop_name, shop_images!inner(image_id!inner(image_url)), shop_business_days!inner(day_id,business_hours_start,business_hours_end)`)
         .eq('shop_business_days.day_id', day)
         .eq('shop_business_days.is_closed', false)
+        // 取得のための時刻を一時的に変更
         .lte('shop_business_days.business_hours_start', nowTime)
         .gte('shop_business_days.business_hours_end', nowTime)
-    console.log(response.data)
+    const data: shopLists[] | any = response.data
+    shopList.value = data
 }
 
-displayCurrentlyOpenShops()
-
-async function getShop(): Promise<void> {
+async function displayAllShops(): Promise<void> {
     const response = await supabase.from('shops')
         // 内部結合で画像を取得
         .select(`shop_id,shop_name, shop_images!inner(image_id!inner(image_url))`)
@@ -59,8 +61,36 @@ async function getShop(): Promise<void> {
     shopList.value = data
 }
 
+async function displayShopsByTopReviews(): Promise<void> {
+    const response = await supabase.from('shops')
+        // 内部結合で画像を取得
+        .select(`shop_id,shop_name, star_rating,shop_images!inner(image_id!inner(image_url))`)
+        .order('star_rating', { ascending: false })
+
+    console.log(response.data)
+    const data: shopLists[] | any = response.data;
+    shopList.value = data
+}
+
+function handleSelectChange() {
+    switch (selectedOption.value) {
+        case 'displayAll':
+            displayAllShops();
+            break;
+        case 'displayOpenShops':
+            displayCurrentlyOpenShops();
+            break;
+        case 'displayTopReviews':
+            displayShopsByTopReviews();
+            break;
+        default:
+            console.log('未定義のオプション');
+    }
+}
+
+
 onMounted(() => {
-    getShop()
+    displayAllShops()
 })
 </script>
 <style scoped>
