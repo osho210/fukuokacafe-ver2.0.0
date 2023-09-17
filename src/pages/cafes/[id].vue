@@ -1,5 +1,5 @@
 <template>
-    <p>text</p>
+
 </template>
 <script lang="ts" setup>
 definePageMeta({

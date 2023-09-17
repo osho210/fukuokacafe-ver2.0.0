@@ -119,6 +119,9 @@ const supabaseUrl = $config.public.VITE_SUPABASE_URL
 const supabaseApiKey = $config.public.VITE_SUPABASE_API_KEY
 const supabase = createClient(supabaseUrl, supabaseApiKey)
 
+const route = useRoute()
+const shopId = route.params.id
+
 let showMobileActive = ref(true)
 let showPcActive = ref(true)
 
@@ -142,12 +145,6 @@ const selectItem = (selectVal: number) => {
     localSelectedItemId.value = selectVal
 }
 
-// const instagramUrl: ReadonlyArray<instgramEmbed> = [
-//     { id: 1, src: 'https://www.instagram.com/p/Cpb4uS1v6GD/embed' },
-//     { id: 2, src: 'https://www.instagram.com/p/CpXM1w4v0xZ/embed' },
-//     { id: 3, src: 'https://www.instagram.com/p/CogAeaZvAE0/embed' }
-// ]
-
 const swiperOptions = ref({
     loop: true,
     pagination: {
@@ -162,7 +159,7 @@ const swiperOptions = ref({
 
 // 店舗の取得
 async function getShop() {
-    const { data } = await supabase.from('shops').select().eq('shop_id', 1)
+    const { data } = await supabase.from('shops').select().eq('shop_id', shopId)
     shops.value = data ? data[0] : [] as shops[]
 }
 
@@ -171,7 +168,7 @@ async function getCLosed(): Promise<void> {
     const response = await supabase
         .from('shop_business_days')
         .select(`business_days!inner(day_name)`)
-        .eq('shop_id', 1)
+        .eq('shop_id', shopId)
         .eq('is_closed', true)
 
     const data: BusinessCloseDay[] | any = response.data;
@@ -184,7 +181,7 @@ async function businessTime(): Promise<void> {
     const response = await supabase
         .from('shop_business_days')
         .select(`business_hours_start,business_hours_end,is_closed`)
-        .eq('shop_id', 1)
+        .eq('shop_id', shopId)
         .eq('day_id', day)
     const data: BusinessDay[] | any = response.data
     // 当日が営業日の場合実行
@@ -200,7 +197,7 @@ async function getShopImages(): Promise<void> {
     const response = await supabase
         .from('shop_images')
         .select(`images!inner(image_url,photographer_icon,photographer_name),shops!inner(shop_name)`)
-        .eq('shop_id', 1)
+        .eq('shop_id', shopId)
 
     const data: sliderItemImages[] | any = response.data;
     sliderItemImages.value = data
@@ -211,7 +208,7 @@ async function getInstagramEmbeds(): Promise<void> {
     const response = await supabase
         .from('embeds')
         .select("embed_name,embed_id")
-        .eq('shop_id', 1)
+        .eq('shop_id', shopId)
     const data: instgramEmbed[] | any = response.data;
     instagramUrl.value = data
     console.log(instagramUrl.value)
