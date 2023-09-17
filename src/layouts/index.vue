@@ -4,6 +4,9 @@
         <SliderContent />
         <div class="content">
             <div class="contentMain">
+                <ul>
+                    <li v-for="country in countries" :key="country.id">{{ country.name }}</li>
+                </ul>
                 <slot :showMobileActive="showMobileActive" :showPcActive="showPcActive" />
             </div>
             <Sidebar />
@@ -30,21 +33,5 @@ async function getCountries() {
 }
 
 onMounted(() => {
-    getCountries()
-    const handleResize = () => {
-        if (window.innerWidth <= 550) {
-            showMobileActive.value = true
-            showPcActive.value = false
-        } else {
-            showMobileActive.value = false
-            showPcActive.value = true
-        }
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-
-    onUnmounted(() => {
-        window.removeEventListener('resize', handleResize)
-    })
 })
 </script>

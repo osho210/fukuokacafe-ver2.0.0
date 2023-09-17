@@ -29,3 +29,16 @@ type instgramEmbed = {
     embed_id: number
     embed_name: string
 }[];
+
+
+type shopList = {
+    shop_id: number;
+    shop_name: string;
+    shop_images: {
+        image_id: {
+            image_url: string;
+        }[];
+    };
+};
+
+type shopLists = Shop[];
