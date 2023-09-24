@@ -22,7 +22,7 @@ const footerItems: ReadonlyArray<NavItems> = [
     { name: 'ふんいき', path: btmCategoryIcon, url: 'category' },
     { name: 'もくてき', path: btmPurposeIcon, url: 'purpose' }
 ]
-const { showPcActive } = defineProps<{
+defineProps<{
     showPcActive: boolean
 }>()
 </script>
