@@ -19,7 +19,6 @@
 
 <script setup lang="ts">
 const active = ref(false)
-const isActive = ref(true)
 const humbegerItems: ReadonlyArray<HeaderItems> = [
   { name: 'ホーム', url: '/' },
   { name: '福岡カフェ日記について', url: 'about' },

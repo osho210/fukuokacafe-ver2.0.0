@@ -30,7 +30,6 @@ type instgramEmbed = {
     embed_name: string
 }[];
 
-
 type shopList = {
     shop_id: number;
     shop_name: string;
@@ -38,7 +37,15 @@ type shopList = {
         image_id: {
             image_url: string;
         }[];
-    };
-};
+    }[];
+    shop_business_days?: {
+        day_id: number
+        business_hours_start: Date;
+        business_hours_end: Date;
+    }[];
+}[];
 
-type shopLists = Shop[];
+type hashtags = {
+    hashtag_id: number
+    hashtag_name: string
+}[]

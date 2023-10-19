@@ -29,7 +29,7 @@ const headerItems: ReadonlyArray<HeaderItems> = [
 ]
 
 const isActive = ref(true)
-const { showMobileActive, showPcActive } = defineProps<{
+defineProps<{
     showMobileActive: boolean
     showPcActive: boolean
 }>()

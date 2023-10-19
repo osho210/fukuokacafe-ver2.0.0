@@ -3,9 +3,9 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-    src: string
-}>()
+defineProps({
+  src: String
+})
 </script>
 <style scoped>
 .instagram-iframe {

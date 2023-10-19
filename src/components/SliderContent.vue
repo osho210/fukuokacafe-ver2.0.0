@@ -25,18 +25,6 @@ import about from '../assets/image/shared/about.png'
 import area from '../assets/image/shared/area.png'
 import contact from '../assets/image/shared/contact.png'
 
-const swiperOptions = ref({
-    loop: true,
-    pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-    },
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-    }
-})
-
 const sliderItemImages: ReadonlyArray<NavItems> = [
     { name: 'about', path: about, url: 'about' },
     { name: 'area', path: area, url: 'area' },

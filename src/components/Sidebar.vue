@@ -44,9 +44,11 @@ const sideItemd: ReadonlyArray<NavItems> = [
     { name: 'お問い合わせ', url: 'contact', path: sideContactIcon }
 ]
 
-async function getHashtag() {
-    const { data } = await supabase.from('hashtags').select()
-    hashtags.value = data as any[]
+async function getHashtag(): Promise<void> {
+    const response = await supabase.from('hashtags').select()
+    console.log(response.data)
+    const data = response.data as hashtags
+    hashtags.value = data
 }
 
 onMounted(() => {

@@ -50,10 +50,10 @@ interface menus{
     menu_name: string
 }
 
-interface hashtags{
-    hashtag_id:number
-    hashtag_name: string
-}
+// interface hashtags{
+//     hashtag_id:number
+//     hashtag_name: string
+// }
 
 interface shops {
     shop_id: number

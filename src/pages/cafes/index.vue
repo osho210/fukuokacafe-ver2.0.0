@@ -10,10 +10,10 @@
         </label>
     </div>
     <ul class="shopLists">
-        <router-link :to="currentRoute + shop.shop_id" v-for="shop in shopList" :key="shop.shop_name" class="shopList">
+        <router-link :to="currentRoute + '/' + shop.shop_id" v-for="shop in shopList" :key="shop.shop_name" class="shopList">
             <li>
                 <p class="shop-name">{{ shop.shop_name }}</p>
-                <img :src='"/_nuxt//assets/image/article/shop/" + shop.shop_images[0].image_id.image_url'>
+                <img :src='"/_nuxt/assets/image/article/shop/" + shop.shop_images[0].image_id.image_url'>
             </li>
         </router-link>
     </ul>
@@ -30,7 +30,7 @@ const $config = useRuntimeConfig()
 const supabaseUrl = $config.public.VITE_SUPABASE_URL
 const supabaseApiKey = $config.public.VITE_SUPABASE_API_KEY
 const supabase = createClient(supabaseUrl, supabaseApiKey)
-const shopList = ref<shopLists>(inject('shopList', {} as shopLists))
+const shopList = ref<shopList>(inject('shopList', {} as shopList))
 const route = useRoute()
 let currentRoute = ref(route.path)
 
@@ -46,10 +46,10 @@ async function displayCurrentlyOpenShops(): Promise<void> {
         .select(`shop_id,shop_name, shop_images!inner(image_id!inner(image_url)), shop_business_days!inner(day_id,business_hours_start,business_hours_end)`)
         .eq('shop_business_days.day_id', day)
         .eq('shop_business_days.is_closed', false)
-        // 取得のための時刻を一時的に変更
         .lte('shop_business_days.business_hours_start', nowTime)
         .gte('shop_business_days.business_hours_end', nowTime)
-    const data: shopLists[] | any = response.data
+
+    const data = response.data as shopList
     shopList.value = data
 }
 
@@ -57,7 +57,7 @@ async function displayAllShops(): Promise<void> {
     const response = await supabase.from('shops')
         // 内部結合で画像を取得
         .select(`shop_id,shop_name, shop_images!inner(image_id!inner(image_url))`)
-    const data: shopLists[] | any = response.data;
+    const data = response.data as shopList
     shopList.value = data
 }
 
@@ -67,8 +67,7 @@ async function displayShopsByTopReviews(): Promise<void> {
         .select(`shop_id,shop_name, star_rating,shop_images!inner(image_id!inner(image_url))`)
         .order('star_rating', { ascending: false })
 
-    console.log(response.data)
-    const data: shopLists[] | any = response.data;
+    const data = response.data as shopList
     shopList.value = data
 }
 
