@@ -14,7 +14,7 @@
     </div>
     <div v-else>
         <div class="recommend_img">
-            <img :src="'https://sunny-profiterole-1f0989.netlify.app/_nuxt/assets/image/diagnosis/' + recommendType(userAnswers).img" alt="カテゴリー">
+            <img :src="'../assets/image/diagnosis/' + recommendType(userAnswers).img" alt="カテゴリー">
         </div>
         <!-- シェア
         <h3>SNSで診断結果をシェアする</h3>
