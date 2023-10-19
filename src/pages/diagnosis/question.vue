@@ -14,7 +14,7 @@
     </div>
     <div v-else>
         <div class="recommend_img">
-            <img :src="'../assets/image/diagnosis/' + recommendType(userAnswers).img" alt="カテゴリー">
+            <img :src="recommendType(userAnswers).img" alt="カテゴリー">
         </div>
         <!-- シェア
         <h3>SNSで診断結果をシェアする</h3>
@@ -23,6 +23,15 @@
 </template>
 
 <script setup lang="ts">
+import java from '../../assets/image/diagnosis/java.png'
+import keny from '../../assets/image/diagnosis/keny.png'
+import yirg from '../../assets/image/diagnosis/yirg.png'
+import suma from '../../assets/image/diagnosis/suma.png'
+import kona from '../../assets/image/diagnosis/kona.png'
+import rob from '../../assets/image/diagnosis/rob.png'
+import harr from '../../assets/image/diagnosis/harr.png'
+import guat from '../../assets/image/diagnosis/guat.png'
+
 
 definePageMeta({
     layout: "home"
@@ -47,15 +56,15 @@ function buttonText(index: number) {
 }
 
 const typeArray = [
-    { title: "JAVA", subTitle: "定番のカフェが好きな", desc: "安定した味を求める伝統主義者", img: "java.png" },
-    { title: "KENY", subTitle: "人とは違うカフェに行きたい", desc: "革新を求める挑戦者", img: "keny.png" },
+    { title: "JAVA", subTitle: "定番のカフェが好きな", desc: "安定した味を求める伝統主義者", img: java },
+    { title: "KENY", subTitle: "人とは違うカフェに行きたい", desc: "革新を求める挑戦者", img: keny },
     { title: "YIRG", subTitle: "誰も知らないカフェに行きたい", desc: "未知の魅力に引かれる探求者", img: "yirg.png" },
-    { title: "BLUE", subTitle: "インスタ映えするお店に行きたい", desc: "シーンを彩るトレンドセッター", img: "blue.png" },
-    { title: "SUMA", subTitle: "静かに足を伸ばすお店を探している", desc: "穏やかな環境で心を落ち着かせたい守護者", img: "suma.png" },
-    { title: "KONA", subTitle: "おしゃべりができるお店を探している", desc: "コミュニケーションを楽しむ社交家", img: "kona.png" },
-    { title: "ROB", subTitle: "コーヒーが美味しいお店を探している", desc: "味を追求するコーヒー純粋主義者", img: "rob.png" },
-    { title: "HARR", subTitle: "芸術的なカフェに行きたい", desc: "芸術と感性を愛するクリエイティブソウル", img: "harr.png" },
-    { title: "GUAT", subTitle: "美味しい食事がしたい", desc: "美味しいは正義、一口は幸せタイプ", img: "guat.png" }
+    { title: "BLUE", subTitle: "インスタ映えするお店に行きたい", desc: "シーンを彩るトレンドセッター", img: yirg },
+    { title: "SUMA", subTitle: "静かに足を伸ばすお店を探している", desc: "穏やかな環境で心を落ち着かせたい守護者", img: suma },
+    { title: "KONA", subTitle: "おしゃべりができるお店を探している", desc: "コミュニケーションを楽しむ社交家", img: kona },
+    { title: "ROB", subTitle: "コーヒーが美味しいお店を探している", desc: "味を追求するコーヒー純粋主義者", rob },
+    { title: "HARR", subTitle: "芸術的なカフェに行きたい", desc: "芸術と感性を愛するクリエイティブソウル", img: harr },
+    { title: "GUAT", subTitle: "美味しい食事がしたい", desc: "美味しいは正義、一口は幸せタイプ", img: guat }
 ]
 
 function maxAnswer(userAnswers: Array<number>): number {
