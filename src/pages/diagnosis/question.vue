@@ -17,7 +17,7 @@
             <img :src="recommendType(userAnswers).img" alt="カテゴリー">
         </div>
         <h3>SNSで診断結果をシェアする</h3>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+        <button class="text-none ma-2" color="#1da1f2" rounded variant="flat" width="200" @click="twitterShare">シェアする</button>
     </div>
 </template>
 
@@ -61,6 +61,16 @@ async function addData() {
         console.log('Data added successfully:', data);
     }
 }
+
+const route = window.location.href
+console.log(route)
+async function twitterShare() {
+    //シェアする画面を設定
+    var shareURL = 'https://twitter.com/intent/tweet?text=' + "カフェのMBTI診断を作成してみました" + "診断結果はこちら" + '&url=' + route;
+    //シェア用の画面へ移行
+    location.href = shareURL
+}
+
 
 
 definePageMeta({
