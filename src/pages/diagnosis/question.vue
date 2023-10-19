@@ -16,9 +16,8 @@
         <div class="recommend_img">
             <img :src="recommendType(userAnswers).img" alt="カテゴリー">
         </div>
-        <!-- シェア
         <h3>SNSで診断結果をシェアする</h3>
-        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a> -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
     </div>
 </template>
 
@@ -31,6 +30,37 @@ import kona from '../../assets/image/diagnosis/kona.png'
 import rob from '../../assets/image/diagnosis/rob.png'
 import harr from '../../assets/image/diagnosis/harr.png'
 import guat from '../../assets/image/diagnosis/guat.png'
+import blue from '../../assets/image/diagnosis/blue.png'
+
+import { createClient } from '@supabase/supabase-js'
+const $config = useRuntimeConfig()
+const supabaseUrl = $config.public.VITE_SUPABASE_URL
+const supabaseApiKey = $config.public.VITE_SUPABASE_API_KEY
+const supabase = createClient(supabaseUrl, supabaseApiKey)
+
+async function addData() {
+    const { data, error } = await supabase
+        .from('mbti')
+        .insert([
+            {
+                java: userAnswers.value[0],
+                keny: userAnswers.value[1],
+                blue: userAnswers.value[2],
+                suma: userAnswers.value[3],
+                kona: userAnswers.value[4],
+                rob: userAnswers.value[5],
+                harr: userAnswers.value[6],
+                guat: userAnswers.value[7],
+                yirg: userAnswers.value[8]
+            }
+        ]);
+
+    if (error) {
+        console.error('Error adding data:', error);
+    } else {
+        console.log('Data added successfully:', data);
+    }
+}
 
 
 definePageMeta({
@@ -48,6 +78,10 @@ const saveAnswer = (answerIndex: number) => {
 
     // 次の質問へ進む
     currentQuestion.value += 1;
+
+    if (currentQuestion.value === 16) {
+        addData()
+    }
 }
 function buttonText(index: number) {
     // ボタンのテキストをインデックスに基づいて設定
@@ -58,8 +92,8 @@ function buttonText(index: number) {
 const typeArray = [
     { title: "JAVA", subTitle: "定番のカフェが好きな", desc: "安定した味を求める伝統主義者", img: java },
     { title: "KENY", subTitle: "人とは違うカフェに行きたい", desc: "革新を求める挑戦者", img: keny },
-    { title: "YIRG", subTitle: "誰も知らないカフェに行きたい", desc: "未知の魅力に引かれる探求者", img: "yirg.png" },
-    { title: "BLUE", subTitle: "インスタ映えするお店に行きたい", desc: "シーンを彩るトレンドセッター", img: yirg },
+    { title: "YIRG", subTitle: "誰も知らないカフェに行きたい", desc: "未知の魅力に引かれる探求者", img: yirg },
+    { title: "BLUE", subTitle: "インスタ映えするお店に行きたい", desc: "シーンを彩るトレンドセッター", img: blue },
     { title: "SUMA", subTitle: "静かに足を伸ばすお店を探している", desc: "穏やかな環境で心を落ち着かせたい守護者", img: suma },
     { title: "KONA", subTitle: "おしゃべりができるお店を探している", desc: "コミュニケーションを楽しむ社交家", img: kona },
     { title: "ROB", subTitle: "コーヒーが美味しいお店を探している", desc: "味を追求するコーヒー純粋主義者", rob },
@@ -253,16 +287,15 @@ const questionArray: QuestionArray = ref([
     width: 100%;
 }
 
-/* @media screen and (max-width: 1024px) {
-    .recommend_btn {
-        display: flex;
-    }
-} */
-
 /* chatbot pc */
 @media screen and (min-width: 500px) {
     .recommend_text {
         text-align: center;
+    }
+
+    .recommend_img {
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 </style>
