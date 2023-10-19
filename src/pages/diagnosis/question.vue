@@ -1,12 +1,86 @@
 <template>
-    
+    <div v-if="currentQuestion < questionArray.length">
+        <h2 class="recommend_title">カフェ診断テスト</h2>
+        <!-- 現在の質問を表示 -->
+        <p class="recommend_num">QUESTION{{ currentQuestion + 1 }}</p>
+        <p class="recommend_text">{{ questionArray[currentQuestion][`question${currentQuestion + 1}`] }}</p>
+        <!-- 回答オプションを表示し、ユーザーが選択できるようにします -->
+        <div class="recommend_btn_wrapper">
+            <div class="recommend_btn" v-for="i in 4" :key="i" @click="saveAnswer(i, questionArray[currentQuestion][`ans${i}`])">
+                <font-awesome-icon icon="fa-solid fa-play" style="height: 10px; margin-right: 10px;" />
+                {{ buttonText(i - 1) }}
+            </div>
+        </div>
+    </div>
+    <div v-else>
+        <div class="recommend_img">
+            <img :src="'/_nuxt/assets/image/diagnosis/' + recommendType(userAnswers).img" alt="カテゴリー">
+        </div>
+        <!-- シェア
+        <h3>SNSで診断結果をシェアする</h3>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a> -->
+    </div>
 </template>
 
 <script setup lang="ts">
+
 definePageMeta({
     layout: "home"
 });
-const quesetionArray = [
+const currentQuestion = ref(0)
+let userAnswers = ref(new Array(9).fill(0));
+
+const saveAnswer = (answerIndex: number) => {
+    // 選択された回答に対応する配列を取得
+    const selectedAnswer = questionArray.value[currentQuestion.value][`ans${answerIndex}`];
+
+    // 配列の値を既存のスコアに加算
+    userAnswers.value = userAnswers.value.map((score, index) => score + selectedAnswer[index]);
+
+    // 次の質問へ進む
+    currentQuestion.value += 1;
+}
+function buttonText(index: number) {
+    // ボタンのテキストをインデックスに基づいて設定
+    const texts = ["はい", "いいえ", "どちらかといえばはい", "どちらかと言えばいいえ"];
+    return texts[index];
+}
+
+const typeArray = [
+    { title: "JAVA", subTitle: "定番のカフェが好きな", desc: "安定した味を求める伝統主義者", img: "java.png" },
+    { title: "KENY", subTitle: "人とは違うカフェに行きたい", desc: "革新を求める挑戦者", img: "keny.png" },
+    { title: "YIRG", subTitle: "誰も知らないカフェに行きたい", desc: "未知の魅力に引かれる探求者", img: "yirg.png" },
+    { title: "BLUE", subTitle: "インスタ映えするお店に行きたい", desc: "シーンを彩るトレンドセッター", img: "blue.png" },
+    { title: "SUMA", subTitle: "静かに足を伸ばすお店を探している", desc: "穏やかな環境で心を落ち着かせたい守護者", img: "suma.png" },
+    { title: "KONA", subTitle: "おしゃべりができるお店を探している", desc: "コミュニケーションを楽しむ社交家", img: "kona.png" },
+    { title: "ROB", subTitle: "コーヒーが美味しいお店を探している", desc: "味を追求するコーヒー純粋主義者", img: "rob.png" },
+    { title: "HARR", subTitle: "芸術的なカフェに行きたい", desc: "芸術と感性を愛するクリエイティブソウル", img: "harr.png" },
+    { title: "GUAT", subTitle: "美味しい食事がしたい", desc: "美味しいは正義、一口は幸せタイプ", img: "guat.png" }
+]
+
+function maxAnswer(userAnswers: Array<number>): number {
+    return userAnswers.reduce((maxIndex = 0, value = 0, index = 0, array = []) => {
+        return value > array[maxIndex] ? index : maxIndex;
+    }, 0);
+};
+
+function recommendType(userAnswers: Array<number>) {
+    const typeNumber = maxAnswer(userAnswers)
+    const recommendTypeNum = typeArray[typeNumber]
+    return recommendTypeNum
+}
+
+interface QuestionAnswer {
+    question?: string;
+    ans1: number[];
+    ans2: number[];
+    ans3: number[];
+    ans4: number[];
+}
+
+type QuestionArray = Array<QuestionAnswer>;
+
+const questionArray: QuestionArray = ref([
     {
         question1: "誰も行ったことないような隠れ家的お店が好き。",
         ans1: [-3, 4, 5, 0, 2, 0, 0, 1, 0],
@@ -36,7 +110,7 @@ const quesetionArray = [
         ans4: [-2, -2, -2, -3, 0, 0, 1, -2, -2]
     },
     {
-        question5: "福岡のカフェに関するランキングや人気投稿をチェックすることがありますか？",
+        question5: "福岡のカフェに関するランキングや人気投稿を頻繁にチェックしている",
         ans1: [4, 0, -1, 4, 0, 1, 0, 1, 1],
         ans2: [2, 0, 0, 2, 0, 0, 0, 1, 0],
         ans3: [-2, 0, 1, -2, 0, 0, 0, -1, 0],
@@ -109,7 +183,7 @@ const quesetionArray = [
     }
     ,
     {
-        question15: "カフェでの楽しい会話や笑い声が、良い時間を過ごすための重要な要素だと思いますか？",
+        question15: "楽しい会話や笑い声が、良い時間を過ごすための重要な要素だ",
         ans1: [0, 0, 0, 0, 0, 6, 0, 0, 2],
         ans2: [0, 0, 0, 0, 0, 4, 0, 0, 1],
         ans3: [0, 0, 0, 0, 0, 1, 0, 0, -1],
@@ -123,6 +197,63 @@ const quesetionArray = [
         ans3: [2, 0, 0, -1, 0, 0, 0, 2, 0],
         ans4: [-4, 0, 1, 2, 0, 0, 1, 4, 0]
     }
-]
+])
+
 
 </script>
+
+<style>
+.recommend_btn {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 15px;
+    font-size: 18px;
+    background-color: #917055;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: white;
+    text-align: left;
+    margin: 10px auto;
+}
+
+.recommend_title {
+    text-align: center;
+}
+
+.recommend_text {
+    margin: 10px;
+}
+
+.recommend_num {
+    text-align: center;
+}
+
+.recommend_btn_wrapper {
+    margin: 30px auto;
+    display: block;
+}
+
+.character {
+    text-align: center;
+}
+
+.recommend_img img {
+    width: 100%;
+}
+
+/* @media screen and (max-width: 1024px) {
+    .recommend_btn {
+        display: flex;
+    }
+} */
+
+/* chatbot pc */
+@media screen and (min-width: 500px) {
+    .recommend_text {
+        text-align: center;
+    }
+}
+</style>

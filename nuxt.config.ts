@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: 'src/',
   css: ['~/assets/css/reset.css', '~/assets/css/common.css', '~/assets/css/shop.css', '~/assets/css/article.css'],
-  plugins: ['~/plugins/globalVariables.ts'],
+  plugins: ['~/plugins/globalVariables.ts', '~/plugins/fontawesome.ts'],
   modules: ['nuxt-swiper', 'nuxt-clarity-analytics'],
   ssr: false,
   app: {
@@ -16,6 +16,8 @@ export default defineNuxtConfig({
             })(window, document, "clarity", "script", "iu1fzbkjnf");`,
           type: 'text/javascript',
         },
+        { src: 'https://platform.twitter.com/widgets.js', async: true, charset: 'utf-8' }
+
       ],
     },
   },

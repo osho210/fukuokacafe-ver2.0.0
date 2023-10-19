@@ -13,7 +13,7 @@
         <router-link :to="currentRoute + '/' + shop.shop_id" v-for="shop in shopList" :key="shop.shop_name" class="shopList">
             <li>
                 <p class="shop-name">{{ shop.shop_name }}</p>
-                <img :src='"/_nuxt//assets/image/article/shop/" + shop.shop_images[0].image_id[0].image_url'>
+                <img :src='"/_nuxt/assets/image/article/shop/" + shop.shop_images[0].image_id.image_url'>
             </li>
         </router-link>
     </ul>

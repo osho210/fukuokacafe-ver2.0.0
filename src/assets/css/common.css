@@ -38,6 +38,7 @@
 /* 画面共通レイアウト */
 .content{
     display: flex;
+    margin-top: 80px;
 }
 .contentMain{
     width: 80%;
