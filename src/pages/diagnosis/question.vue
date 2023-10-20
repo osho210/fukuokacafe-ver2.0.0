@@ -25,9 +25,9 @@
 useHead({
     title: 'MBTI風カフェ分析',
     meta: [
-        { property: 'og:title', content: 'MBTI風カフェ分析' },
-        { property: 'og:description', content: 'MBTI風カフェ分析を作成しました' },
-        { property: 'og:image', content: 'https://sunny-profiterole-1f0989.netlify.app/_nuxt/java.caca99e1.png' }
+        { hid: 'og:description', property: 'og:title', content: 'MBTI風カフェ分析' },
+        { hid: 'og:url', property: 'og:description', content: 'MBTI風カフェ分析を作成しました' },
+        { hid: 'og:image', property: 'og:image', content: 'https://sunny-profiterole-1f0989.netlify.app/_nuxt/java.caca99e1.png' }
     ]
 });
 
@@ -74,8 +74,6 @@ async function addData() {
 const route = window.location.href
 console.log(route)
 async function twitterShare() {
-    // このページのURLを指定
-    var route = 'https://sunny-profiterole-1f0989.netlify.app/_nuxt/java.caca99e1.png';
     // シェアする画面を設定
     var shareURL = 'https://twitter.com/intent/tweet?text=' + "カフェのMBTI診断を作成してみました" + "診断結果はこちら" + '&url=' + route;
     // シェア用の画面へ移行
