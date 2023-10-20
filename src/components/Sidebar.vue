@@ -46,7 +46,6 @@ const sideItemd: ReadonlyArray<NavItems> = [
 
 async function getHashtag(): Promise<void> {
     const response = await supabase.from('hashtags').select()
-    console.log(response.data)
     const data = response.data as hashtags
     hashtags.value = data
 }
@@ -102,3 +101,8 @@ onMounted(() => {
     margin-bottom: 1.5em;
 }
 </style>
+
+
+<!-- <a href="//ck.jp.ap.valuecommerce.com/servlet/referral?sid=3706134&pid=889794176&vc_url=https%3A%2F%2Frental.timescar.jp%2Fview%2Freserve%2FselectShopAndDay.jsp%3FfunctionId%3Dinit%26startPage%3Dtop" rel="nofollow"><img src="//ad.jp.ap.valuecommerce.com/servlet/gifbanner?sid=3706134&pid=889794176" height="1" width="0" border="0">テスト</a>
+https://rental.timescar.jp/view/reserve/selectShopAndDay.jsp?functionId=init&startPage=top
+https://rental.timescar.jp/view/reserve/selectShopAndDay.jsp?functionId=init&startPage=top -->
